@@ -209,8 +209,8 @@ TEST SUMMARY: 7/7 PASSED (100% PASS RATE)
 ### Setup in 60 Seconds
 ```bash
 # 1. Clone this repository
-git clone https://github.com/YOUR_USERNAME/mindos-commerce.git
-cd mindos-commerce
+git clone https://github.com/Dia-Garg/MindOS.git
+cd MindOS
 
 # 2. Install dependencies
 npm install
