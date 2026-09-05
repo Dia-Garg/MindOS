@@ -1,69 +1,78 @@
 <div align="center">
 
-# 🧠 MINDOS COMMERCE
-### The Autonomous Merchant Operating System & AI Buyer Gateway
-**A Production-Grade Agentic Commerce Platform for Solo Student Founders**
+# 🧠 MindOS
+### Autonomous Merchant Operating System & AI Buyer Gateway
+**An open-source, policy-bounded agentic commerce engine for solo founders and modern digital brands.**
 
-[![Track](https://img.shields.io/badge/Razorpay%20AI%20Buildathon-Track%201%3A%20AI%20Growth%20%26%20Agentic%20Commerce-blue?style=for-the-badge&logo=razorpay)](https://razorpay.com/buildathon/)
+[![Vite](https://img.shields.io/badge/Vite-5.4-646CFF?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev/)
+[![React](https://img.shields.io/badge/React-18-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://reactjs.org/)
 [![Protocol](https://img.shields.io/badge/Protocol-NPCI%20UAP%20%2F%20AP2%202026.1-059669?style=for-the-badge)](https://npci.org.in)
-[![Tests](https://img.shields.io/badge/Test%20Suite-7%2F7%20Passing%20(100%25)-10b981?style=for-the-badge)](./tests/agent.test.js)
+[![Test Suite](https://img.shields.io/badge/Tests-7%2F7%20Passing%20(100%25)-10b981?style=for-the-badge)](./tests/agent.test.js)
 [![License](https://img.shields.io/badge/License-MIT-slate?style=for-the-badge)](./LICENSE)
 
 <p align="center">
-  <a href="#-why-i-built-this-the-solo-founder-reality"><b>The Story</b></a> •
-  <a href="#-how-mindos-hits-razorpay-track-01"><b>Razorpay Alignment</b></a> •
+  <a href="#-the-origin-story"><b>The Origin</b></a> •
+  <a href="#-key-capabilities"><b>Capabilities</b></a> •
   <a href="#-system-architecture"><b>Architecture</b></a> •
-  <a href="#-the-agentic-commerce-engine-ap2--uap"><b>AP2 Protocol</b></a> •
-  <a href="#-failure-handling--circuit-breaker"><b>Resilience</b></a> •
-  <a href="#-quick-start--verification"><b>Quick Start</b></a> •
-  <a href="#-5-minute-pitch-video"><b>Video Pitch</b></a>
+  <a href="#-protocol-specification-ap2--uap"><b>AP2 Protocol</b></a> •
+  <a href="#-resilience--circuit-breaker"><b>Resilience</b></a> •
+  <a href="#-quick-start"><b>Quick Start</b></a> •
+  <a href="#-test-suite"><b>Test Suite</b></a>
 </p>
 
 ---
 
 </div>
 
-## 📌 Submission Overview
-- **Applicant:** Solo Student Builder (BTech Computer Science & Engineering, AI/ML Specialization)
-- **Target Internship:** Razorpay AI Builder Intern (Bangalore, 2026)
-- **Primary Track:** **Track 01 — AI Growth & Agentic Commerce**
-- **Secondary Synergies:** Track 03 (AI Revenue Recovery) & Track 04 (Bounded Verification & Policy Gating)
-- **Live Demo Link:** [Localhost / Self-Hosted in 60s](#-quick-start--verification)
-- **Pitch Video Script:** [PITCH_VIDEO_SCRIPT.md](./PITCH_VIDEO_SCRIPT.md)
+## 💡 The Origin Story
+
+As a solo student founder pursuing a BTech in Computer Science while building an independent consumer brand from scratch, **bandwidth was my single biggest bottleneck**:
+- At 2:00 PM, I would be in an Operating Systems lab debugging semaphores.
+- At 2:15 PM, three customers would abandon checkouts due to payment intent timeouts.
+- At 2:30 PM, potential buyers or external shopping bots would reach out with pricing queries.
+
+A solo builder cannot be glued to a screen 24/7 negotiating offers, diagnosing gateway drops, or calculating bounded profit margins.
+
+At the same time, commerce is undergoing a generational shift: **the transition from human browsing to autonomous agent-to-agent transactions**. Under emerging protocols like **NPCI's Unified Autonomous Payments (UAP)** and **Agent Protocol 2 (AP2)**, software agents (ChatGPT, Claude, personal shopping bots) are beginning to search catalogs, negotiate bundles, and execute checkouts autonomously.
+
+> **The Core Problem:** Today's online stores are designed strictly for human eyeballs, visual clicks, and browser carts. They are completely invisible to AI buyers, have no mathematical discount boundaries to prevent automated exploitation, and lack automated failure recovery when payment rails degrade.
+
+**I built MindOS to solve this.**
+
+MindOS acts as an **autonomous co-founder and commercial operating system**:
+1. **Internally:** Clears raw founder mental chaos into prioritized execution while automatically triggering revenue recovery workflows in the background.
+2. **Externally:** Serves as a secure gateway that exposes an agent-readable catalog, negotiates autonomously within bounded mathematical floors, and settles orders through production payment infrastructure.
 
 ---
 
-## 💡 Why I Built This: The Solo Founder Reality
+## 🚀 Key Capabilities
 
-I am 20 years old, pursuing my BTech CSE, and building an apparel and tools brand from scratch. 
+### 1. External AI Buyer Gateway (AP2 / UAP Protocol)
+Exposes a machine-readable schema endpoint (`GET /v1/catalog.json`) allowing external autonomous shopping agents to discover items, inspect real-time inventory, and query product attributes without scraping HTML.
 
-My biggest existential constraint is **bandwidth**:
-- At 2:00 PM, I am in an Operating Systems lab debugging semaphores.
-- At 2:15 PM, three customers abandon checkouts due to UPI intent timeouts.
-- At 2:30 PM, an external autonomous AI buyer queries my store looking for custom discounts on high-GSM hoodies.
+### 2. Autonomous Bounded Negotiation & Floor Defense
+External buyer agents can negotiate pricing or volume discounts via `POST /v1/agent/negotiate`.
+- MindOS validates proposals against deterministic merchant policy rules (e.g., maximum allowable discount of 15%).
+- If an adversarial bot attempts a predatory low-ball bid (e.g., 60% below list price), the engine **blocks the loss** and computes a mathematically optimal counter-offer at the merchant's floor price:
+$$\text{Floor Price} = \max(\text{minNegotiatedPrice}, \text{listPrice} \times (1 - \text{maxDiscountPercent}))$$
 
-A solo builder cannot be on their laptop 24/7 negotiating offers, diagnosing gateway drops, or calculating bounded margins. 
+### 3. Autonomous Revenue Recovery
+Identifies payment failures and checkout drop-offs (UPI intent timeouts, bank OTP abandonment, 3DS authentication drops).
+- Diagnoses the root failure cause.
+- Evaluates recovery probability.
+- Automatically generates and dispatches dynamic recovery payment links with bounded micro-discounts via secondary messaging channels.
 
-Furthermore, **2026 marks the beginning of the Agent-to-Agent Commerce era**. With **NPCI's Unified Autonomous Payments (UAP)** and the global **AP2 / ACP protocol standards**, software agents (ChatGPT, Claude, autonomous personal concierges) will soon execute the majority of consumer transactions.
+### 4. Human-in-the-Loop Threshold Guardrails
+High-value bulk orders or transactions exceeding supervisor limits (e.g., >₹5,000) automatically pause autonomous execution and route to a Founder Approval Queue with cryptographic validity windows.
 
-> **The Problem:** Modern e-commerce stores are built for human eyes, clicks, and carts. They are completely opaque to AI buyers, have no mathematical discount boundaries, and lack automated failure recovery.
+### 5. Fault-Tolerant Circuit Breaker
+Production payment rails inevitably suffer connection drops and timeouts. MindOS implements an automated circuit-breaker pattern:
+- Catches upstream gateway rail connection faults without crashing.
+- Preserves stock reservation locks (zero inventory leaks or double-selling).
+- Automatically routes transactions through fallback UPI payment links.
 
-**MindOS Commerce Edition solves this.** It turns raw founder brain dumps into organized execution while acting as an **autonomous, policy-gated sales gateway powered by Razorpay test rails**.
-
----
-
-## 🎯 How MindOS Hits Razorpay Track 01
-
-Razorpay's prompt outlines an exact engineering bar. Here is how MindOS satisfies each requirement:
-
-| Razorpay Requirement | The Prompt's Bar | How MindOS Implements It | Implementation File |
-|---|---|---|---|
-| **Make merchant transactable by AI buyers** | *"Make them sellable to AI buyers... NPCI's UAP and global protocol race (AP2)"* | Exposes a machine-readable catalog schema (`/catalog.json`) with semantic tags, stock checks, and autonomous negotiation endpoints. | [`src/services/aiBuyerProtocol.js`](./src/services/aiBuyerProtocol.js) |
-| **Razorpay Test-Mode APIs** | *"Grows revenue for a merchant on Razorpay test-mode APIs"* | Full integration with Razorpay Orders (`POST /v1/orders`) and Payment Links (`POST /v1/payment_links`) with real keys or deterministic mock mode. | [`src/services/razorpay.js`](./src/services/razorpay.js) |
-| **Every money action explainable, bounded & gated** | *"Every money action explainable, bounded and gated"* | Deterministic policy engine: `MaxDiscountPolicy` (≤15%), `DailyCapPolicy` (≤₹50k), and `HumanInTheLoopPolicy` (orders >₹5,000 halted for supervisor). | [`src/services/aiBuyerProtocol.js`](./src/services/aiBuyerProtocol.js) |
-| **One failure handled gracefully** | *"Show one failure handled gracefully"* | Simulates a 504 Gateway Timeout on Razorpay bank rails. System catches error, prevents double-charges, preserves inventory, and dispatches a fallback UPI link. | [`src/services/razorpay.js`](./src/services/razorpay.js) |
-| **Audit trail** | *"Show the audit trail"* | Real-time cryptographic ledger capturing actor signatures, intents, policy checks, and raw payloads with one-click JSON export. | [`src/services/auditLogger.js`](./src/services/auditLogger.js) |
-| **Revenue recovery** | *"Find revenue that's slipping away and win it back"* | Diagnoses checkout drop-offs (UPI timeout, OTP drop) and dispatches dynamic Razorpay recovery links with micro-discounts. | [`src/services/agentEngine.js`](./src/services/agentEngine.js) |
+### 6. Cryptographic Audit Ledger
+Every single schema query, pricing negotiation, policy evaluation, and payment payload is permanently logged in an immutable event stream with real-time payload inspection and one-click JSON export.
 
 ---
 
@@ -71,50 +80,50 @@ Razorpay's prompt outlines an exact engineering bar. Here is how MindOS satisfie
 
 ```mermaid
 flowchart TD
-    subgraph InputLayer ["1. Founder Operations"]
-        A["Founder Brain Dump\n(Raw thoughts, exams, orders)"] --> B["MindOS Executive Agent"]
+    subgraph FounderOps ["1. Founder Operations Layer"]
+        A["Natural Language Brain Dump\n(Raw thoughts, deadlines, operational notes)"] --> B["MindOS Executive Agent"]
         B --> C["Task Classifier\n(Brand, College, Personal)"]
-        B --> D["Commerce Intent Trigger"]
+        B --> D["Commerce Intent Trigger\n(Cart recovery, flash campaigns)"]
     end
 
-    subgraph AgenticProtocol ["2. External AI Buyer Gateway (AP2 / UAP)"]
-        E["External Shopping Bot\n(ChatGPT, Claude, Personal Agent)"] -->|GET /catalog.json| F["Machine-Readable Catalog"]
-        E -->|POST /agent/negotiate| G["Autonomous Negotiator"]
-        E -->|POST /agent/checkout| H["Settlement Coordinator"]
+    subgraph AgentProtocol ["2. External AI Buyer Gateway (AP2 / UAP)"]
+        E["External Shopping Agent\n(ChatGPT, Claude, Buyer Bot)"] -->|GET /v1/catalog.json| F["Machine-Readable Catalog"]
+        E -->|POST /v1/agent/negotiate| G["Autonomous Price Negotiator"]
+        E -->|POST /v1/agent/checkout| H["Settlement Coordinator"]
     end
 
     subgraph PolicyEngine ["3. Deterministic Safety & Policy Gate"]
         D --> I{"Policy Verifier"}
         G --> I
         H --> I
-        I -->|Discount > 15%| J["Counter-Offer Optimal Floor\n(Mathematical Loss Prevention)"]
-        I -->|Order > ₹5,000| K["Halt Execution\n(Escalate to Founder)"]
-        I -->|Within Bounds| L["Execution Authorization Token"]
+        I -->|Discount > 15% Cap| J["Floor Defense Counter-Offer\n(Mathematical Loss Prevention)"]
+        I -->|Order > ₹5,000 Threshold| K["Human-in-the-Loop Halt\n(Escalate to Founder)"]
+        I -->|Within Policy Bounds| L["Execution Authorization Token"]
     end
 
-    subgraph RazorpayRails ["4. Razorpay Payment Infrastructure"]
-        L --> M["Razorpay Orders API (/v1/orders)"]
-        L --> N["Razorpay Payment Links API (/v1/payment_links)"]
-        M -->|Simulated 504 Timeout Rail| O["Resilience Circuit Breaker"]
-        O -->|Fallback| P["Reserved UPI Payment Link\n(10-Min Hold Reservation)"]
+    subgraph PaymentLayer ["4. Payment Infrastructure Rails"]
+        L --> M["Payment Orders API (/v1/orders)"]
+        L --> N["Dynamic Payment Links API (/v1/payment_links)"]
+        M -->|Simulated Gateway Rail Timeout| O["Resilience Circuit Breaker"]
+        O -->|Fallback Route| P["Reserved UPI Payment Link\n(10-Min Hold Window)"]
     end
 
-    subgraph AuditLedger ["5. Cryptographic Audit Trail"]
-        I -.-> Q["Immutable Event Ledger"]
+    subgraph AuditLedger ["5. Cryptographic Audit Ledger"]
+        I -.-> Q["Immutable Event Log"]
         L -.-> Q
         O -.-> Q
-        Q --> R["Exportable Audit JSON"]
+        Q --> R["Exportable Audit Ledger (JSON)"]
     end
 ```
 
 ---
 
-## ⚡ Protocol Implementation: AP2 / UAP
+## 📡 Protocol Specification: AP2 / UAP
 
-MindOS implements the draft specification for **Agentic Protocol 2 (AP2)** and **NPCI Unified Autonomous Payments**:
+MindOS implements draft specifications for **Agentic Protocol 2 (AP2)** and **NPCI Unified Autonomous Payments**:
 
-### 1. Agent Catalog Discovery (`GET /v1/catalog.json`)
-Allows any LLM agent to inspect structured schemas without scraping HTML:
+### 1. Catalog Discovery (`GET /v1/catalog.json`)
+Allows any LLM agent or autonomous client to inspect structured product specifications:
 ```json
 {
   "protocol": "AP2/UAP-2026.1",
@@ -129,78 +138,49 @@ Allows any LLM agent to inspect structured schemas without scraping HTML:
       "negotiable": true,
       "inStock": true,
       "availableUnits": 28,
+      "specifications": "320 GSM French Terry, hidden NFC tag for verifiable ownership.",
       "tags": ["hoodie", "streetwear", "heavyweight", "techwear"]
     }
   ]
 }
 ```
 
-### 2. Autonomous Bounded Negotiation (`POST /v1/agent/negotiate`)
-External buyer bots negotiate pricing autonomously. The policy gate mathematically blocks below-cost sales:
-- **Rule 1 (`MaxDiscountPolicy`):** Maximum automated discount is hardcoded to **15.0%**.
-- **Rule 2 (Loss Prevention Floor):** If an adversarial bot proposes ₹999 (a 60% discount), MindOS **rejects the bid** and returns a bounded counter-offer at the merchant floor:
-$$\text{Floor Price} = \max(\text{minNegotiatedPrice}, \text{listPrice} \times (1 - 0.15)) = ₹2,124$$
-- **Rule 3 (Token Expiry):** Counter-offers are bound to a 15-minute cryptographic validity token to prevent market timing attacks.
+### 2. Autonomous Price Negotiation (`POST /v1/agent/negotiate`)
+Evaluates pricing proposals against strict mathematical boundaries:
+- **Max Discount Ceiling:** Standard ceiling is capped at **15.0%**.
+- **Counter-Offer Expiry:** Approved bids or counter-offers are cryptographically bound to a 15-minute token TTL to prevent stale order manipulation.
 
 ---
 
-## 🛡️ Failure Handling & Circuit Breaker
+## 🛡️ Resilience & Circuit Breaker
 
-Fintech systems must survive degraded rails. MindOS includes a live failure simulation mode:
+Fintech systems must survive degraded rails. MindOS includes built-in graceful degradation:
 
 ```
-[External AI Buyer] ──(Calls Checkout)──► [MindOS Gateway]
-                                                │
-                                    (Calls Razorpay Orders API)
-                                                │
-                                                ▼
-                                   [504 GATEWAY_TIMEOUT] 💥
-                                                │
-                          ┌─────────────────────┴─────────────────────┐
-                          ▼                                           ▼
-             [Stock Lock Preserved]                   [Circuit Breaker Triggered]
-            (Zero inventory leak)                                     │
-                                                                      ▼
-                                                       [Fallback UPI Payment Link]
-                                                     (Issued with 10-min reservation)
+[External AI Buyer] ──(Execute Checkout)──► [MindOS Gateway]
+                                                    │
+                                        (Calls Payment Orders API)
+                                                    │
+                                                    ▼
+                                       [504 GATEWAY_TIMEOUT] 💥
+                                                    │
+                              ┌─────────────────────┴─────────────────────┐
+                              ▼                                           ▼
+                 [Stock Lock Preserved]                       [Circuit Breaker Active]
+                (Zero inventory leaks)                                    │
+                                                                          ▼
+                                                           [Fallback UPI Payment Link]
+                                                         (Issued with 10-min reservation)
 ```
 
-1. **Failure Injected:** Simulates a bank rail connection drop (`GATEWAY_TIMEOUT`).
-2. **Exception Caught:** MindOS's error boundary catches the exception without terminating the application.
-3. **Double-Charge Prevention:** Verifies order status before retrying.
-4. **Fallback Link Dispatched:** Generates an alternative Razorpay Payment Link routed through secondary UPI rails.
-5. **Audit Receipt:** Logs a `RECOVERED_FAILOVER` event in the audit trail.
+1. **Failure Interception:** Catches upstream connection timeouts without terminating the application.
+2. **State Protection:** Prevents duplicate debits and retains reserved inventory locks.
+3. **Automated Fallback:** Issues an alternative payment link routed through secondary rails.
+4. **Audit Provenance:** Appends a `RECOVERED_FAILOVER` record into the verifiable event stream.
 
 ---
 
-## 🧪 Verified Automated Test Suite
-
-MindOS comes with a standalone, zero-dependency Node.js test runner validating all critical boundaries:
-
-```bash
-npm test
-```
-
-### Test Output:
-```
-=== RUNNING MINDOS COMMERCE AGENT TEST SUITE ===
-
-✅ PASS: AI Buyer Protocol: Agent-Readable Catalog Discovery
-✅ PASS: Policy Enforcement: Approves Negotiation Within 15% Bound
-✅ PASS: Policy Enforcement: Rejects Out-of-Bound Price & Counters Optimal Floor
-✅ PASS: Policy Gate: Orders > ₹5,000 Require Founder Approval
-✅ PASS: Razorpay Integration: Generates Orders & Payment Links
-✅ PASS: Resilience & Failure Recovery: Graceful Fallback on Gateway Rail Timeout
-✅ PASS: Audit Trail: Captures Cryptographic and Intent Event Ledger
-
-========================================
-TEST SUMMARY: 7/7 PASSED (100% PASS RATE)
-========================================
-```
-
----
-
-## 💻 Quick Start & Verification
+## 💻 Quick Start
 
 ### Prerequisites
 - Node.js (v18 or higher)
@@ -208,87 +188,83 @@ TEST SUMMARY: 7/7 PASSED (100% PASS RATE)
 
 ### Setup in 60 Seconds
 ```bash
-# 1. Clone this repository
+# 1. Clone the repository
 git clone https://github.com/Dia-Garg/MindOS.git
 cd MindOS
 
 # 2. Install dependencies
 npm install
 
-# 3. Start local development server
+# 3. Launch local development server
 npm run dev
 ```
 
 Visit **`http://localhost:3000`** in your browser.
 
-### Razorpay API Configuration
-MindOS includes an autonomous deterministic mock engine. If no keys are provided, it runs seamlessly in full offline test mode so judges can evaluate with **zero configuration**.
+### Payment Rails Configuration
+MindOS includes an autonomous deterministic test adapter. If no external API keys are configured, it runs in full offline test mode out of the box so you can evaluate the entire flow immediately.
 
-*(Optional)* To connect your live Razorpay Test Mode keys:
+*(Optional)* To connect live test-mode credentials:
 ```bash
-# Copy sample environment file
 cp .env.example .env
 
-# Add your Razorpay Test Credentials
+# Edit .env with your credentials
 VITE_RAZORPAY_KEY_ID=rzp_test_YourKeyId
 VITE_RAZORPAY_KEY_SECRET=YourKeySecret
 ```
 
 ---
 
-## 📂 Project Structure & Manifest
+## 🧪 Test Suite
+
+MindOS features a zero-dependency automated test runner verifying all critical protocol contracts and safety invariants:
+
+```bash
+npm test
+```
+
+### Verified Test Matrix:
+| Test Case | Invariant Tested | Status |
+|---|---|:---:|
+| `AI Buyer Protocol: Agent-Readable Catalog Discovery` | Conforms to AP2 / UAP JSON schema structure | ✅ PASS |
+| `Policy Enforcement: Approves Negotiation Within 15% Bound` | Validates standard 12% discount request | ✅ PASS |
+| `Policy Enforcement: Rejects Out-of-Bound Price & Counters Floor` | Blocks 60% low-ball offer & returns optimal floor | ✅ PASS |
+| `Policy Gate: Orders > ₹5,000 Require Founder Approval` | Suspends bulk order (₹12,495) for human authorization | ✅ PASS |
+| `Payment Integration: Generates Orders & Payment Links` | Successfully generates orders and shortlinks | ✅ PASS |
+| `Resilience & Failure Recovery: Fallback on Gateway Timeout` | Catches 504 rail fault and activates circuit breaker | ✅ PASS |
+| `Audit Trail: Captures Cryptographic and Intent Event Ledger` | Verifies SHA-256 audit log integrity | ✅ PASS |
+
+---
+
+## 📂 Project Structure
 
 ```
-mindos-commerce/
+MindOS/
 ├── src/
 │   ├── components/
-│   │   ├── Header.jsx                # Top bar with status & step navigation
-│   │   ├── BrainDumpTab.jsx          # Hero: Founder brain dump & automated actions
+│   │   ├── Header.jsx                # Navigation, status indicators, and step control
+│   │   ├── BrainDumpTab.jsx          # Founder executive terminal & automated triggers
 │   │   ├── AIBuyerSimulatorTab.jsx   # AP2 / UAP protocol negotiation sandbox
-│   │   ├── CommerceTerminalTab.jsx   # Merchant store & 1-click cart recovery
+│   │   ├── CommerceTerminalTab.jsx   # Merchandise catalog & 1-click cart recovery
 │   │   └── AuditInspectorTab.jsx     # Cryptographic audit ledger & JSON export
 │   ├── services/
-│   │   ├── aiBuyerProtocol.js        # AP2 / UAP agent protocol implementation
-│   │   ├── razorpay.js               # Razorpay Orders & Payment Links API adapter
-│   │   ├── agentEngine.js            # Autonomous merchant agent & intent planner
-│   │   └── auditLogger.js            # Event stream & policy compliance logger
+│   │   ├── aiBuyerProtocol.js        # AP2 / UAP protocol engine & boundary verifier
+│   │   ├── razorpay.js               # Payment orders & payment links adapter
+│   │   ├── agentEngine.js            # Autonomous merchant agent & intent classifier
+│   │   └── auditLogger.js            # Event stream logger with cryptographic hashing
 │   ├── data/
-│   │   └── mockData.js               # Initial catalog, drop-off scenarios, policies
-│   ├── App.jsx                       # Root application container
-│   ├── main.jsx                      # Entrypoint
-│   └── index.css                     # Tailwind & custom typography styling
+│   │   └── mockData.js               # Baseline catalog, drop scenarios, policy bounds
+│   ├── App.jsx                       # Root application view
+│   ├── main.jsx                      # Application entrypoint
+│   └── index.css                     # Tailwind CSS & design tokens
 ├── tests/
-│   └── agent.test.js                 # 7-point automated integration test suite
-├── PITCH_VIDEO_SCRIPT.md             # 5-minute video recording walkthrough
-├── README.md                         # Project documentation (this file)
+│   └── agent.test.js                 # 7-point integration test suite
+├── README.md                         # Project documentation
 ├── tailwind.config.js                # Cyber Minimal Emerald theme tokens
-└── package.json                      # Project dependencies & scripts
+└── package.json                      # Project dependencies & npm scripts
 ```
-
----
-
-## 🎥 5-Minute Pitch Video
-
-- **Video Pitch Link:** *[Insert your Loom / YouTube link here]*
-- **Complete Pitch Script:** See [`PITCH_VIDEO_SCRIPT.md`](./PITCH_VIDEO_SCRIPT.md) for the exact minute-by-minute breakdown:
-  - `0:00 – 0:45`: The Problem & Solo Founder Bandwidth Bottleneck
-  - `0:45 – 1:45`: Live Demo: Founder Brain Dump & Automated Recovery Action
-  - `1:45 – 3:15`: Live Demo: AI Buyer Handshake (AP2 Protocol & Floor Defense)
-  - `3:15 – 4:15`: Live Demo: Gateway Failure Handled Gracefully (Circuit Breaker)
-  - `4:15 – 5:00`: Live Demo: Audit Trail & JSON Export
-
----
-
-## 📜 Evaluation Criteria Checklist (For Razorpay Judges)
-
-- [x] **Track 01 Alignment:** Enables merchant revenue growth and makes store transactable by AI buyers end-to-end.
-- [x] **Razorpay API Integration:** Generates live test-mode Orders and Payment Links.
-- [x] **Explainable & Bounded:** All actions validated against 15% discount ceilings and daily budget caps.
-- [x] **Failure Handled Gracefully:** 504 Timeout caught, inventory preserved, fallback link generated.
-- [x] **Audit Trail:** Full JSON log available for download in one click.
-- [x] **Code Quality:** Modern React 18, Vite 5, Tailwind CSS, clean architecture, 100% test pass rate.
 
 ---
 
 ## 📄 License
-MIT License. Created with passion for the **Razorpay AI Buildathon 2026**.
+Released under the [MIT License](./LICENSE). Created by [Dia Garg](https://github.com/Dia-Garg).
