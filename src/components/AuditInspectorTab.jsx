@@ -39,7 +39,7 @@ export default function AuditInspectorTab() {
             Explainable Decision & Audit Trail
           </h2>
           <p className="text-xs text-slate-400 font-sans mt-0.5">
-            Every money action explainable, bounded and gated. Immutable log for Buildathon evaluators.
+            Every financial action explainable, bounded, and gated. Verifiable ledger for protocol compliance.
           </p>
         </div>
 

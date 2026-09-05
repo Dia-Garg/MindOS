@@ -9,7 +9,7 @@ export class RazorpayService {
   }
 
   /**
-   * Set simulated failure for demonstrating Razorpay's required "Failure Handled Gracefully"
+   * Set simulated failure for testing circuit-breaker resilience
    */
   setSimulatedFailure(shouldFail) {
     this.simulatedFailureActive = shouldFail;

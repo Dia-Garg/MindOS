@@ -104,7 +104,7 @@ async function runTests() {
     assert.ok(link.short_url.includes('rzp.io'));
   });
 
-  // Test 6: Graceful Failure Handling (Razorpay Buildathon Requirement)
+  // Test 6: Graceful Failure Handling & Circuit Breaker Recovery
   await asyncTest('Resilience & Failure Recovery: Graceful Fallback on Gateway Rail Timeout', async () => {
     const protocol = new AIBuyerProtocolEngine();
     const rzp = new RazorpayService();

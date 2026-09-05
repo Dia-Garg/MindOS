@@ -13,8 +13,8 @@ export default function AIBuyerSimulatorTab({ onNavigateTab }) {
     {
       id: 'success',
       title: '1. Standard AI Negotiation & Checkout',
-      desc: 'AI Buyer requests 12% off. Within 15% merchant cap. Razorpay link issued.',
-      badge: 'Happy Path',
+      desc: 'AI Buyer requests 12% off. Within 15% merchant cap. Dynamic payment link issued.',
+      badge: 'Standard Flow',
       color: 'text-emerald-400 border-emerald-500/30 bg-emerald-500/10'
     },
     {
@@ -27,7 +27,7 @@ export default function AIBuyerSimulatorTab({ onNavigateTab }) {
     {
       id: 'failure',
       title: '3. Gateway Failure Handled Gracefully',
-      desc: 'Simulates Razorpay bank rail timeout. Catches fault & dispatches fallback UPI link.',
+      desc: 'Simulates gateway bank rail timeout. Catches fault & dispatches fallback UPI link.',
       badge: 'Resilience Demo',
       color: 'text-rose-400 border-rose-500/30 bg-rose-500/10'
     },
@@ -206,7 +206,7 @@ export default function AIBuyerSimulatorTab({ onNavigateTab }) {
                 <div className="p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/30 space-y-2">
                   <div className="flex items-center gap-2 text-emerald-400 font-bold">
                     <CheckCircle2 className="w-4 h-4" />
-                    <span>Purchase Approved & Razorpay Link Created</span>
+                    <span>Purchase Approved & Payment Link Created</span>
                   </div>
                   <div className="text-slate-300 space-y-1">
                     <div>Product: <strong className="text-white">{finalResult.product}</strong></div>
@@ -219,7 +219,7 @@ export default function AIBuyerSimulatorTab({ onNavigateTab }) {
                     rel="noreferrer"
                     className="mt-3 inline-flex items-center justify-center gap-1.5 w-full py-2.5 px-4 rounded-xl bg-emerald-500 text-slate-950 font-bold text-xs hover:bg-emerald-400 transition-colors"
                   >
-                    <span>Open Razorpay Payment Link ↗</span>
+                    <span>Open Payment Link ↗</span>
                   </a>
                 </div>
               )}
@@ -240,7 +240,7 @@ export default function AIBuyerSimulatorTab({ onNavigateTab }) {
                 <div className="p-4 rounded-xl bg-rose-500/10 border border-rose-500/30 space-y-2">
                   <div className="flex items-center gap-2 text-rose-400 font-bold">
                     <RefreshCw className="w-4 h-4" />
-                    <span>Razorpay Gateway Failover Recovered</span>
+                    <span>Gateway Rail Failover Recovered</span>
                   </div>
                   <p className="text-slate-300 leading-relaxed">
                     {finalResult.error}. MindOS gracefully intercepted the fault, kept inventory locked, and issued an automated fallback UPI payment link without crashing.

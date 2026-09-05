@@ -27,7 +27,7 @@ export default function Header({ activeTab, setActiveTab, auditCount }) {
               </span>
             </div>
             <p className="font-mono text-[10px] text-slate-400">
-              your mind. organized. powered by razorpay.
+              your mind. organized. autonomous commerce engine.
             </p>
           </div>
         </div>

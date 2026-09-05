@@ -75,7 +75,7 @@ export default function CommerceTerminalTab({ onNavigateTab, onRevenueUpdate }) 
         <div className="p-4 rounded-2xl bg-[#12161f] border border-[#222838] space-y-1">
           <span className="font-mono text-[10px] text-slate-400 uppercase">Payment Rails</span>
           <div className="font-mono text-2xl font-bold text-sky-400">
-            Razorpay
+            Integrated
           </div>
           <span className="text-[11px] text-slate-400 font-sans">Orders & Links APIs Active</span>
         </div>
@@ -90,7 +90,7 @@ export default function CommerceTerminalTab({ onNavigateTab, onRevenueUpdate }) 
               Autonomous Revenue Recovery
             </h3>
             <p className="text-xs text-slate-400 font-sans mt-0.5">
-              Identifies abandoned checkouts and dispatches dynamic Razorpay recovery payment links.
+              Identifies abandoned checkouts and dispatches dynamic recovery payment links.
             </p>
           </div>
 
@@ -176,7 +176,7 @@ export default function CommerceTerminalTab({ onNavigateTab, onRevenueUpdate }) 
                     rel="noreferrer"
                     className="w-full flex items-center justify-center gap-1.5 py-2 rounded-xl bg-emerald-500/20 text-emerald-400 text-xs font-mono font-bold hover:bg-emerald-500/30"
                   >
-                    <span>Open Razorpay Link</span>
+                    <span>Open Payment Link</span>
                     <ExternalLink className="w-3 h-3" />
                   </a>
                 ) : (

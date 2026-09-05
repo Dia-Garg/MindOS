@@ -12,7 +12,7 @@ export default function BrainDumpTab({ onNavigateTab }) {
   const samplePrompts = [
     {
       label: "🔥 Recover Carts + BTech Lab",
-      text: "OS lab quiz due tomorrow 11pm. Also 3 customers dropped out of the hoodie checkout today on UPI timeouts. Recover the carts with Razorpay links and clear my mind."
+      text: "OS lab quiz due tomorrow 11pm. Also 3 customers dropped out of the hoodie checkout today on UPI timeouts. Recover the dropped checkouts with dynamic payment links and clear my mind."
     },
     {
       label: "⚡ Flash Sale + Brand Focus",
@@ -307,7 +307,7 @@ export default function BrainDumpTab({ onNavigateTab }) {
         <div className="text-center py-12 text-slate-400 font-mono text-xs space-y-2">
           <p>your chaos goes in. clarity comes out.</p>
           <p className="text-[11px] text-slate-400">
-            Powered by Razorpay test rails for autonomous revenue recovery.
+            Autonomous revenue recovery and agent-to-agent commerce protocol.
           </p>
         </div>
       )}
