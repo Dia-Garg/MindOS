@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Sparkles, ArrowRight, CheckCircle2, AlertCircle, ShoppingCart, Zap, ExternalLink } from 'lucide-react';
-import { agentEngine } from '../services/agentEngine';
+import { Terminal, ArrowRight, CheckCircle2, AlertCircle, ShoppingBag, ExternalLink, CornerDownLeft, Sparkles } from 'lucide-react';
+import { agentEngine } from '../services/agentEngine.js';
 
 export default function BrainDumpTab({ onNavigateTab }) {
   const [input, setInput] = useState('');
@@ -10,16 +10,16 @@ export default function BrainDumpTab({ onNavigateTab }) {
 
   const samplePrompts = [
     {
-      title: "🔥 Recover Carts + College Chaos",
-      text: "Drowning in OS lab assignment due tomorrow 11pm. We also had 3 carts abandoned on the hoodie today because of UPI checkout dropoffs. Need to recover them now and keep focus clear."
+      title: "Recover Checkout Drops + Lab Workload",
+      text: "Operating Systems lab due tomorrow 11pm. We also had 3 customer dropoffs on the hoodie checkout today due to payment timeouts. Execute recovery links and organize remaining engineering tasks."
     },
     {
-      title: "⚡ Flash Sale + Brand Launch",
-      text: "Launching a flash sale with 10% discount for our Cybernetic Hoodie to push end-of-month GMV on Razorpay. Need to study for neural networks quiz too."
+      title: "Promotional Campaign + Model Training",
+      text: "Deploy a 10% promotional flash sale payment link for the Cybernetic Hoodie to accelerate monthly target. Need to finish hyperparameter tuning script for AI specialization project."
     },
     {
-      title: "🧠 General Founder Sync",
-      text: "Feeling overwhelmed balancing final year project with manufacturing vendor calls. Need to review daily revenue and make sure our AI Buyer endpoints are responding."
+      title: "Daily Founder Operations Standup",
+      text: "Reviewing supplier quotes for next inventory batch, verifying AP2 AI Buyer Gateway status, and preparing for end-semester project review."
     }
   ];
 
@@ -46,33 +46,33 @@ export default function BrainDumpTab({ onNavigateTab }) {
   }
 
   return (
-    <div className="max-w-4xl mx-auto space-y-6">
-      {/* Intro Banner */}
-      <div className="bg-white/[0.03] border border-white/10 rounded-2xl p-6 relative overflow-hidden">
-        <div className="absolute -right-10 -bottom-10 w-48 h-48 bg-[#00ff9d]/5 rounded-full blur-3xl pointer-events-none" />
-        <div className="flex items-start justify-between">
+    <div className="max-w-5xl mx-auto space-y-6">
+      {/* Top Description */}
+      <div className="bg-zinc-900/60 border border-zinc-800 rounded-xl p-6">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div>
-            <h2 className="font-syne text-xl font-bold text-white flex items-center gap-2">
-              <Zap className="w-5 h-5 text-[#00ff9d]" />
-              Executive Founder Terminal
+            <div className="flex items-center gap-2 text-xs font-mono text-zinc-400">
+              <span>FOUNDER EXECUTIVE WORKBENCH</span>
+              <span>•</span>
+              <span className="text-zinc-300">NATURAL LANGUAGE OPERATIONS</span>
+            </div>
+            <h2 className="text-lg font-semibold text-zinc-100 mt-1">
+              Natural Language Operations & Task Extraction
             </h2>
-            <p className="text-sm text-white/60 mt-1 font-sans">
-              Dump raw thoughts, college deadlines, stress, and brand ideas. MindOS structures your focus and autonomously executes bounded Razorpay commerce actions.
+            <p className="text-xs text-zinc-400 mt-1 max-w-2xl">
+              Input unstructured thoughts, deadlines, and merchant directives. MindOS classifies action items and autonomously dispatches bounded Razorpay commerce workflows.
             </p>
           </div>
-          <span className="font-mono text-[10px] uppercase tracking-wider px-2.5 py-1 rounded bg-[#00ff9d]/10 border border-[#00ff9d]/20 text-[#00ff9d]">
-            Autonomous Agent Loop
-          </span>
         </div>
 
-        {/* Quick Sample Prompts */}
-        <div className="mt-4 pt-4 border-t border-white/5 flex flex-wrap gap-2 items-center">
-          <span className="font-mono text-[11px] text-white/40 mr-1">Quick Test Scenarios:</span>
+        {/* Quick Presets */}
+        <div className="mt-5 pt-4 border-t border-zinc-800 flex flex-wrap gap-2 items-center text-xs">
+          <span className="text-zinc-400 text-[11px] font-mono mr-1">PRESET SCENARIOS:</span>
           {samplePrompts.map((p, i) => (
             <button
               key={i}
               onClick={() => setInput(p.text)}
-              className="font-mono text-xs px-3 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 text-white/80 hover:text-white transition-all text-left"
+              className="px-3 py-1.5 rounded-md bg-zinc-800/60 hover:bg-zinc-800 border border-zinc-700/60 text-zinc-300 text-xs transition-colors"
             >
               {p.title}
             </button>
@@ -80,102 +80,92 @@ export default function BrainDumpTab({ onNavigateTab }) {
         </div>
       </div>
 
-      {/* Input Box */}
-      <div className="bg-[#12121a] border border-white/10 rounded-2xl p-5 shadow-2xl focus-within:border-[#00ff9d]/40 transition-all">
+      {/* Input Editor */}
+      <div className="bg-zinc-900/60 border border-zinc-800 rounded-xl p-4 space-y-3">
         <textarea
           value={input}
           onChange={e => setInput(e.target.value)}
-          placeholder="Dump everything here. Assignments due. Brand ideas. Customer dropoffs to recover. Half-formed thoughts. Don't filter..."
+          placeholder="Enter founder directives, operational notes, assignments due, or payment recovery instructions..."
           rows={5}
-          className="w-full bg-transparent border-none text-white text-sm font-sans leading-relaxed focus:outline-none placeholder:text-white/30 resize-none"
+          className="w-full bg-transparent border-none text-zinc-200 text-sm font-sans placeholder:text-zinc-400 focus:outline-none resize-none leading-relaxed"
         />
 
-        <div className="flex items-center justify-between pt-4 mt-2 border-t border-white/10 font-mono text-xs">
-          <span className="text-white/40">
-            {input.length > 0 ? `${input.length} characters` : 'Press "Process with Agent" to organize & execute'}
+        <div className="flex items-center justify-between pt-3 border-t border-zinc-800/80 text-xs">
+          <span className="text-zinc-400 font-mono text-[11px]">
+            {input.length > 0 ? `${input.length} characters` : 'Press "Dispatch to Agent" to classify and execute'}
           </span>
+
           <button
             onClick={handleProcess}
             disabled={!input.trim() || loading}
-            className={`flex items-center gap-2 px-5 py-2.5 rounded-xl font-bold font-mono tracking-wider text-xs transition-all ${
+            className={`inline-flex items-center gap-1.5 px-4 py-2 text-xs font-medium rounded-lg transition-colors ${
               input.trim() && !loading
-                ? 'bg-[#00ff9d] text-black hover:bg-[#00ff9d]/90 shadow-[0_0_20px_rgba(0,255,157,0.3)] cursor-pointer'
-                : 'bg-white/10 text-white/30 cursor-not-allowed'
+                ? 'bg-zinc-100 text-zinc-900 hover:bg-zinc-200 cursor-pointer shadow-sm'
+                : 'bg-zinc-800 text-zinc-500 cursor-not-allowed'
             }`}
           >
             {loading ? (
-              <>
-                <div className="w-3.5 h-3.5 border-2 border-black/30 border-t-black rounded-full animate-spin" />
-                <span>REASONING & EXECUTING...</span>
-              </>
+              <span>Classifying Directives...</span>
             ) : (
               <>
-                <span>PROCESS WITH AGENT</span>
-                <ArrowRight className="w-3.5 h-3.5" />
+                <span>Dispatch to Agent</span>
+                <CornerDownLeft className="w-3.5 h-3.5" />
               </>
             )}
           </button>
         </div>
       </div>
 
-      {/* Output Stream */}
+      {/* Processed Output */}
       {result && (
-        <div className="space-y-6 animate-fade-slide">
-          {/* Automated Actions Triggered Banner (Commerce Wow Factor!) */}
+        <div className="space-y-6">
+          {/* Automated Actions Banner */}
           {result.actionsTriggered && result.actionsTriggered.length > 0 && (
-            <div className="p-5 rounded-2xl bg-gradient-to-r from-[#00ff9d]/10 via-[#4da6ff]/10 to-transparent border border-[#00ff9d]/30 shadow-lg">
-              <div className="flex items-center gap-2 font-mono text-xs font-bold text-[#00ff9d] uppercase tracking-wider mb-2">
-                <Sparkles className="w-4 h-4 text-[#00ff9d]" />
-                Automated Razorpay Commerce Actions Executed:
-              </div>
-              <div className="space-y-2">
-                {result.actionsTriggered.map((act, i) => (
-                  <div key={i} className="flex flex-col md:flex-row md:items-center justify-between p-3 rounded-xl bg-black/40 border border-white/10 text-xs font-mono">
-                    <span className="text-white font-medium">{act.message}</span>
-                    <button
-                      onClick={() => onNavigateTab('commerce')}
-                      className="mt-2 md:mt-0 flex items-center gap-1 text-[#00ff9d] hover:underline font-bold"
-                    >
-                      <span>View in Commerce Terminal</span>
-                      <ExternalLink className="w-3 h-3" />
-                    </button>
+            <div className="p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex flex-col md:flex-row md:items-center justify-between gap-3">
+              <div className="flex items-center gap-2.5">
+                <CheckCircle2 className="w-4 h-4 text-emerald-400 flex-shrink-0" />
+                <div>
+                  <div className="text-xs font-semibold text-emerald-300">
+                    Automated Razorpay Commerce Actions Executed
                   </div>
-                ))}
+                  <div className="text-xs text-zinc-300 mt-0.5">
+                    {result.actionsTriggered[0]?.message}
+                  </div>
+                </div>
               </div>
+              <button
+                onClick={() => onNavigateTab('commerce')}
+                className="text-xs font-medium text-emerald-400 hover:underline flex items-center gap-1 whitespace-nowrap self-start md:self-auto"
+              >
+                <span>View in Merchant Console</span>
+                <ExternalLink className="w-3 h-3" />
+              </button>
             </div>
           )}
 
-          {/* Acknowledge Note */}
-          <div className="p-4 rounded-xl bg-white/[0.03] border-l-4 border-[#00ff9d] border-t border-r border-b border-white/10 text-sm italic text-white/80">
-            "{result.structuredTasks.acknowledge}"
+          {/* Acknowledgement & Focus */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="p-4 rounded-xl bg-zinc-900/40 border border-zinc-800 md:col-span-1">
+              <span className="text-[11px] font-mono text-zinc-400 block mb-1">EXECUTIVE STATUS</span>
+              <p className="text-xs text-zinc-300 italic leading-relaxed">
+                "{result.structuredTasks.acknowledge}"
+              </p>
+            </div>
+            <div className="p-4 rounded-xl bg-zinc-900/40 border border-zinc-800 md:col-span-2">
+              <span className="text-[11px] font-mono text-zinc-400 block mb-1">PRIMARY FOCUS TARGET</span>
+              <p className="text-sm font-medium text-zinc-100 leading-snug">
+                {result.structuredTasks.focus}
+              </p>
+            </div>
           </div>
 
-          {/* Focus of the Day */}
-          {result.structuredTasks.focus && (
-            <div className="p-5 rounded-2xl bg-gradient-to-br from-[#00ff9d]/10 to-[#4da6ff]/10 border border-[#00ff9d]/40 shadow-xl">
-              <div className="font-mono text-[10px] text-[#00ff9d] uppercase tracking-widest font-bold mb-1">
-                ⚡ Focus of the Day
-              </div>
-              <div className="text-base font-semibold text-white font-sans">
-                {result.structuredTasks.focus}
-              </div>
-            </div>
-          )}
-
-          {/* 3 Categories: College, Brand, Personal */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-            {/* Brand Category */}
-            <div className="bg-[#12121a] border border-white/10 rounded-2xl p-5 space-y-3">
-              <div className="flex items-center justify-between pb-3 border-b border-white/10">
-                <div className="flex items-center gap-2">
-                  <span className="text-lg">🚀</span>
-                  <h3 className="font-mono text-xs font-bold text-[#ff6b9d] uppercase tracking-wider">
-                    Brand & Revenue
-                  </h3>
-                </div>
-                <span className="font-mono text-[10px] text-white/40">
-                  {result.structuredTasks.brand.length} tasks
-                </span>
+          {/* 3 Classified Columns */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {/* Revenue & Brand */}
+            <div className="bg-zinc-900/60 border border-zinc-800 rounded-xl p-4 space-y-3">
+              <div className="flex items-center justify-between pb-2 border-b border-zinc-800">
+                <span className="text-xs font-semibold text-zinc-200">Revenue & Commerce</span>
+                <span className="text-[11px] font-mono text-zinc-400">{result.structuredTasks.brand.length} items</span>
               </div>
               <div className="space-y-2">
                 {result.structuredTasks.brand.map((item, idx) => {
@@ -185,38 +175,24 @@ export default function BrainDumpTab({ onNavigateTab }) {
                     <div
                       key={taskId}
                       onClick={() => toggleTask(taskId)}
-                      className={`flex items-start gap-2.5 p-3 rounded-xl border cursor-pointer transition-all ${
+                      className={`p-2.5 rounded-lg border text-xs cursor-pointer transition-colors ${
                         isDone
-                          ? 'bg-white/[0.02] border-white/5 text-white/30 line-through'
-                          : 'bg-white/[0.04] border-white/10 text-white hover:border-[#ff6b9d]/30'
+                          ? 'bg-zinc-950/40 border-zinc-800/40 text-zinc-400 line-through'
+                          : 'bg-zinc-900/80 border-zinc-800 text-zinc-300 hover:border-zinc-700'
                       }`}
                     >
-                      <div className={`w-4 h-4 rounded mt-0.5 border flex items-center justify-center transition-all ${
-                        isDone ? 'border-[#00ff9d] bg-[#00ff9d]/20 text-[#00ff9d]' : 'border-white/30'
-                      }`}>
-                        {isDone && <CheckCircle2 className="w-3 h-3" />}
-                      </div>
-                      <span className="text-xs font-sans leading-relaxed flex-1">
-                        {item}
-                      </span>
+                      {item}
                     </div>
                   );
                 })}
               </div>
             </div>
 
-            {/* College Category */}
-            <div className="bg-[#12121a] border border-white/10 rounded-2xl p-5 space-y-3">
-              <div className="flex items-center justify-between pb-3 border-b border-white/10">
-                <div className="flex items-center gap-2">
-                  <span className="text-lg">🎓</span>
-                  <h3 className="font-mono text-xs font-bold text-[#4da6ff] uppercase tracking-wider">
-                    College & BTech
-                  </h3>
-                </div>
-                <span className="font-mono text-[10px] text-white/40">
-                  {result.structuredTasks.college.length} tasks
-                </span>
+            {/* Academic & CSE */}
+            <div className="bg-zinc-900/60 border border-zinc-800 rounded-xl p-4 space-y-3">
+              <div className="flex items-center justify-between pb-2 border-b border-zinc-800">
+                <span className="text-xs font-semibold text-zinc-200">Academic & Engineering</span>
+                <span className="text-[11px] font-mono text-zinc-400">{result.structuredTasks.college.length} items</span>
               </div>
               <div className="space-y-2">
                 {result.structuredTasks.college.map((item, idx) => {
@@ -226,38 +202,24 @@ export default function BrainDumpTab({ onNavigateTab }) {
                     <div
                       key={taskId}
                       onClick={() => toggleTask(taskId)}
-                      className={`flex items-start gap-2.5 p-3 rounded-xl border cursor-pointer transition-all ${
+                      className={`p-2.5 rounded-lg border text-xs cursor-pointer transition-colors ${
                         isDone
-                          ? 'bg-white/[0.02] border-white/5 text-white/30 line-through'
-                          : 'bg-white/[0.04] border-white/10 text-white hover:border-[#4da6ff]/30'
+                          ? 'bg-zinc-950/40 border-zinc-800/40 text-zinc-400 line-through'
+                          : 'bg-zinc-900/80 border-zinc-800 text-zinc-300 hover:border-zinc-700'
                       }`}
                     >
-                      <div className={`w-4 h-4 rounded mt-0.5 border flex items-center justify-center transition-all ${
-                        isDone ? 'border-[#00ff9d] bg-[#00ff9d]/20 text-[#00ff9d]' : 'border-white/30'
-                      }`}>
-                        {isDone && <CheckCircle2 className="w-3 h-3" />}
-                      </div>
-                      <span className="text-xs font-sans leading-relaxed flex-1">
-                        {item}
-                      </span>
+                      {item}
                     </div>
                   );
                 })}
               </div>
             </div>
 
-            {/* Personal Category */}
-            <div className="bg-[#12121a] border border-white/10 rounded-2xl p-5 space-y-3">
-              <div className="flex items-center justify-between pb-3 border-b border-white/10">
-                <div className="flex items-center gap-2">
-                  <span className="text-lg">🧠</span>
-                  <h3 className="font-mono text-xs font-bold text-[#ffc35a] uppercase tracking-wider">
-                    Personal & Energy
-                  </h3>
-                </div>
-                <span className="font-mono text-[10px] text-white/40">
-                  {result.structuredTasks.personal.length} tasks
-                </span>
+            {/* Personal / Focus */}
+            <div className="bg-zinc-900/60 border border-zinc-800 rounded-xl p-4 space-y-3">
+              <div className="flex items-center justify-between pb-2 border-b border-zinc-800">
+                <span className="text-xs font-semibold text-zinc-200">Operations & Personal</span>
+                <span className="text-[11px] font-mono text-zinc-400">{result.structuredTasks.personal.length} items</span>
               </div>
               <div className="space-y-2">
                 {result.structuredTasks.personal.map((item, idx) => {
@@ -267,20 +229,13 @@ export default function BrainDumpTab({ onNavigateTab }) {
                     <div
                       key={taskId}
                       onClick={() => toggleTask(taskId)}
-                      className={`flex items-start gap-2.5 p-3 rounded-xl border cursor-pointer transition-all ${
+                      className={`p-2.5 rounded-lg border text-xs cursor-pointer transition-colors ${
                         isDone
-                          ? 'bg-white/[0.02] border-white/5 text-white/30 line-through'
-                          : 'bg-white/[0.04] border-white/10 text-white hover:border-[#ffc35a]/30'
+                          ? 'bg-zinc-950/40 border-zinc-800/40 text-zinc-400 line-through'
+                          : 'bg-zinc-900/80 border-zinc-800 text-zinc-300 hover:border-zinc-700'
                       }`}
                     >
-                      <div className={`w-4 h-4 rounded mt-0.5 border flex items-center justify-center transition-all ${
-                        isDone ? 'border-[#00ff9d] bg-[#00ff9d]/20 text-[#00ff9d]' : 'border-white/30'
-                      }`}>
-                        {isDone && <CheckCircle2 className="w-3 h-3" />}
-                      </div>
-                      <span className="text-xs font-sans leading-relaxed flex-1">
-                        {item}
-                      </span>
+                      {item}
                     </div>
                   );
                 })}
