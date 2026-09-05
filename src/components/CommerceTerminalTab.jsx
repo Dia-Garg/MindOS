@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ShoppingBag, ArrowUpRight, CheckCircle2, Clock, RefreshCw, ExternalLink, ShieldCheck, Tag, Plus } from 'lucide-react';
+import { ShoppingBag, ArrowUpRight, CheckCircle2, RefreshCw, ExternalLink, Sparkles } from 'lucide-react';
 import { INITIAL_PRODUCTS, INITIAL_ABANDONED_CARTS } from '../data/mockData.js';
 import { razorpayService } from '../services/razorpay.js';
 import { agentEngine } from '../services/agentEngine.js';
@@ -17,7 +17,7 @@ export default function CommerceTerminalTab({ onNavigateTab, onRevenueUpdate }) 
         description: `Direct Purchase: ${product.name}`,
         customer: {
           name: 'Direct Customer',
-          email: 'customer@neurashade.internal'
+          email: 'customer@neurashade.com'
         }
       });
       setGeneratedLinks(prev => ({ ...prev, [product.id]: link.short_url }));
@@ -53,60 +53,44 @@ export default function CommerceTerminalTab({ onNavigateTab, onRevenueUpdate }) 
     .reduce((acc, c) => acc + Math.round(c.amount * 0.9), 0);
 
   return (
-    <div className="space-y-6">
-      {/* KPI Row */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        <div className="bg-zinc-900/60 border border-zinc-800 rounded-xl p-4 space-y-1">
-          <span className="text-[11px] font-mono text-zinc-400 block">RECOVERED GMV (AI LOOP)</span>
-          <div className="text-2xl font-semibold text-zinc-100 font-mono tracking-tight">
+    <div className="max-w-4xl mx-auto space-y-8">
+      {/* Top Stats Banner */}
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <div className="p-4 rounded-2xl bg-[#12161f] border border-[#222838] space-y-1">
+          <span className="font-mono text-[10px] text-slate-400 uppercase">Recovered Revenue (AI Loop)</span>
+          <div className="font-mono text-2xl font-bold text-emerald-400">
             ₹{totalRecovered.toLocaleString()}
           </div>
-          <span className="text-[11px] text-emerald-400 font-medium inline-flex items-center gap-1">
-            <ArrowUpRight className="w-3 h-3" />
-            84.2% recovery rate
-          </span>
+          <span className="text-[11px] text-emerald-300 font-sans">+84% recovery on timeout drops</span>
         </div>
 
-        <div className="bg-zinc-900/60 border border-zinc-800 rounded-xl p-4 space-y-1">
-          <span className="text-[11px] font-mono text-zinc-400 block">AGENT-MEDIATED SESSIONS</span>
-          <div className="text-2xl font-semibold text-zinc-100 font-mono tracking-tight">
-            18
+        <div className="p-4 rounded-2xl bg-[#12161f] border border-[#222838] space-y-1">
+          <span className="font-mono text-[10px] text-slate-400 uppercase">Policy Ceiling Rule</span>
+          <div className="font-mono text-2xl font-bold text-white">
+            15% Max
           </div>
-          <span className="text-[11px] text-zinc-400">
-            AP2 Protocol handshakes
-          </span>
+          <span className="text-[11px] text-slate-400 font-sans">Zero out-of-budget leakage</span>
         </div>
 
-        <div className="bg-zinc-900/60 border border-zinc-800 rounded-xl p-4 space-y-1">
-          <span className="text-[11px] font-mono text-zinc-400 block">POLICY CEILING COMPLIANCE</span>
-          <div className="text-2xl font-semibold text-zinc-100 font-mono tracking-tight">
-            100%
+        <div className="p-4 rounded-2xl bg-[#12161f] border border-[#222838] space-y-1">
+          <span className="font-mono text-[10px] text-slate-400 uppercase">Payment Rails</span>
+          <div className="font-mono text-2xl font-bold text-sky-400">
+            Razorpay
           </div>
-          <span className="text-[11px] text-zinc-400">
-            ≤15% Discount rule active
-          </span>
-        </div>
-
-        <div className="bg-zinc-900/60 border border-zinc-800 rounded-xl p-4 space-y-1">
-          <span className="text-[11px] font-mono text-zinc-400 block">TRANSACTABLE SKUS</span>
-          <div className="text-2xl font-semibold text-zinc-100 font-mono tracking-tight">
-            {products.length}
-          </div>
-          <span className="text-[11px] text-zinc-400">
-            Razorpay Test Rails active
-          </span>
+          <span className="text-[11px] text-slate-400 font-sans">Orders & Links APIs Active</span>
         </div>
       </div>
 
-      {/* Revenue Recovery Workbench */}
-      <div className="bg-zinc-900/60 border border-zinc-800 rounded-xl overflow-hidden">
-        <div className="p-5 border-b border-zinc-800 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      {/* Cart Recovery Queue */}
+      <div className="bg-[#12161f] border border-[#222838] rounded-2xl p-5 space-y-4">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-[#222838]">
           <div>
-            <h3 className="text-sm font-semibold text-zinc-100">
-              Autonomous Revenue Recovery Queue
+            <h3 className="font-bold text-sm text-white font-sans flex items-center gap-2">
+              <Sparkles className="w-4 h-4 text-emerald-400" />
+              Autonomous Revenue Recovery
             </h3>
-            <p className="text-xs text-zinc-400 mt-0.5">
-              Tracks payment timeouts and dropped checkouts. Dispatches dynamic Razorpay recovery payment links with policy-bounded micro-discounts.
+            <p className="text-xs text-slate-400 font-sans mt-0.5">
+              Identifies abandoned checkouts and dispatches dynamic Razorpay recovery payment links.
             </p>
           </div>
 
@@ -114,144 +98,93 @@ export default function CommerceTerminalTab({ onNavigateTab, onRevenueUpdate }) 
             <button
               onClick={handleAutoRecoverAll}
               disabled={recovering}
-              className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-zinc-100 hover:bg-zinc-200 text-zinc-900 text-xs font-medium transition-colors"
+              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold font-mono text-xs transition-colors shadow-md cursor-pointer whitespace-nowrap"
             >
               {recovering ? (
                 <>
                   <RefreshCw className="w-3.5 h-3.5 animate-spin" />
-                  <span>Dispatching Recovery Links...</span>
+                  <span>DISPATCHING LINKS...</span>
                 </>
               ) : (
                 <>
-                  <span>Auto-Recover Batch (₹{totalRecoverable.toLocaleString()})</span>
+                  <Sparkles className="w-3.5 h-3.5" />
+                  <span>RECOVER ALL (₹{totalRecoverable.toLocaleString()})</span>
                 </>
               )}
             </button>
           )}
         </div>
 
-        <div className="overflow-x-auto">
-          <table className="w-full text-left text-xs">
-            <thead>
-              <tr className="border-b border-zinc-800 bg-zinc-900/40 text-[11px] text-zinc-400 font-mono">
-                <th className="py-3 px-5 font-normal">CUSTOMER</th>
-                <th className="py-3 px-4 font-normal">ABANDONED ITEM</th>
-                <th className="py-3 px-4 font-normal">AMOUNT</th>
-                <th className="py-3 px-4 font-normal">DIAGNOSED DROP REASON</th>
-                <th className="py-3 px-4 font-normal">RECOVERY PROBABILITY</th>
-                <th className="py-3 px-5 font-normal text-right">STATUS</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-zinc-800/80">
-              {abandonedCarts.map(cart => (
-                <tr key={cart.id} className="hover:bg-zinc-800/30 transition-colors">
-                  <td className="py-3.5 px-5">
-                    <div className="font-medium text-zinc-200">{cart.customerName}</div>
-                    <div className="text-[11px] text-zinc-400 font-mono">{cart.email}</div>
-                  </td>
-                  <td className="py-3.5 px-4 text-zinc-300">
-                    <div>{cart.productName}</div>
-                    <div className="text-[11px] text-zinc-400">{cart.abandonedAt}</div>
-                  </td>
-                  <td className="py-3.5 px-4 font-mono font-medium text-zinc-200">
-                    ₹{cart.amount.toLocaleString()}
-                  </td>
-                  <td className="py-3.5 px-4 text-zinc-300 text-[11px]">
-                    <span className="px-2 py-0.5 rounded bg-zinc-800 text-zinc-300 border border-zinc-700">
-                      {cart.dropReason}
-                    </span>
-                  </td>
-                  <td className="py-3.5 px-4">
-                    <span className="text-emerald-400 font-mono text-[11px]">
-                      {cart.recoveryProbability} High
-                    </span>
-                  </td>
-                  <td className="py-3.5 px-5 text-right">
-                    {cart.status === 'recovered' ? (
-                      <span className="inline-flex items-center gap-1 text-emerald-400 font-medium text-xs">
-                        <CheckCircle2 className="w-3.5 h-3.5" />
-                        Link Dispatched (₹{Math.round(cart.amount * 0.9).toLocaleString()})
-                      </span>
-                    ) : (
-                      <span className="text-zinc-400 text-xs">
-                        Pending Autonomous Dispatch
-                      </span>
-                    )}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+        <div className="space-y-2">
+          {abandonedCarts.map(cart => (
+            <div
+              key={cart.id}
+              className="p-3.5 rounded-xl bg-[#171c27]/60 border border-[#222838] flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs"
+            >
+              <div>
+                <div className="font-bold text-slate-200">{cart.customerName}</div>
+                <div className="text-slate-400 text-[11px]">{cart.productName} • Drop reason: {cart.dropReason}</div>
+              </div>
+
+              <div className="flex items-center gap-4">
+                <span className="font-mono text-sm font-bold text-white">
+                  ₹{cart.amount.toLocaleString()}
+                </span>
+                {cart.status === 'recovered' ? (
+                  <span className="inline-flex items-center gap-1 text-emerald-400 font-mono text-[11px]">
+                    <CheckCircle2 className="w-3.5 h-3.5" />
+                    Recovered (₹{Math.round(cart.amount * 0.9).toLocaleString()})
+                  </span>
+                ) : (
+                  <span className="text-slate-400 text-[11px] font-mono">
+                    Pending Action
+                  </span>
+                )}
+              </div>
+            </div>
+          ))}
         </div>
       </div>
 
-      {/* Catalog & Payment Links */}
-      <div className="space-y-4">
-        <div className="flex items-center justify-between">
-          <div>
-            <h3 className="text-sm font-semibold text-zinc-100">
-              Active Merchandise Catalog
-            </h3>
-            <p className="text-xs text-zinc-400">
-              Transactable directly or via AP2 Agent Protocol queries.
-            </p>
-          </div>
-          <button
-            onClick={() => onNavigateTab('ai-buyer')}
-            className="text-xs text-zinc-400 hover:text-zinc-200 hover:underline flex items-center gap-1"
-          >
-            <span>Simulate Agent Purchase →</span>
-          </button>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      {/* Product Catalog */}
+      <div className="space-y-3">
+        <h3 className="font-bold text-sm text-white font-sans">
+          Active Brand Merchandise
+        </h3>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
           {products.map(p => (
             <div
               key={p.id}
-              className="bg-zinc-900/60 border border-zinc-800 rounded-xl p-4 flex flex-col justify-between hover:border-zinc-700 transition-colors"
+              className="bg-[#12161f] border border-[#222838] rounded-2xl p-4 flex flex-col justify-between hover:border-emerald-500/30 transition-colors"
             >
-              <div className="space-y-2">
+              <div className="space-y-1.5">
                 <div className="flex items-center justify-between">
-                  <span className="text-[10px] font-mono text-zinc-400 bg-zinc-800 px-2 py-0.5 rounded">
-                    {p.sku}
-                  </span>
-                  <span className="text-[11px] font-mono text-emerald-400">
-                    Stock: {p.stock}
-                  </span>
+                  <span className="font-mono text-[10px] text-slate-400">{p.sku}</span>
+                  <span className="font-mono text-[10px] text-emerald-400">Stock: {p.stock}</span>
                 </div>
-                <h4 className="text-sm font-medium text-zinc-200">
-                  {p.name}
-                </h4>
-                <p className="text-xs text-zinc-400 line-clamp-2 leading-relaxed">
-                  {p.description}
-                </p>
-                <div className="pt-2 flex items-baseline gap-2">
-                  <span className="text-base font-semibold text-zinc-100 font-mono">
-                    ₹{p.price.toLocaleString()}
-                  </span>
-                  <span className="text-[11px] text-zinc-400 font-mono">
-                    Floor: ₹{p.minNegotiatedPrice.toLocaleString()}
-                  </span>
+                <h4 className="text-xs font-bold text-slate-200">{p.name}</h4>
+                <div className="font-mono text-sm font-bold text-emerald-400">
+                  ₹{p.price.toLocaleString()}
                 </div>
               </div>
 
-              <div className="pt-4 mt-3 border-t border-zinc-800/80">
+              <div className="pt-3 mt-3 border-t border-[#222838]">
                 {generatedLinks[p.id] ? (
                   <a
                     href={generatedLinks[p.id]}
                     target="_blank"
                     rel="noreferrer"
-                    className="w-full flex items-center justify-center gap-1.5 py-1.5 px-3 rounded-lg bg-zinc-800 hover:bg-zinc-700 text-zinc-200 text-xs font-medium transition-colors"
+                    className="w-full flex items-center justify-center gap-1.5 py-2 rounded-xl bg-emerald-500/20 text-emerald-400 text-xs font-mono font-bold hover:bg-emerald-500/30"
                   >
-                    <span>View Razorpay Link</span>
+                    <span>Open Razorpay Link</span>
                     <ExternalLink className="w-3 h-3" />
                   </a>
                 ) : (
                   <button
                     onClick={() => handleCreateDirectLink(p)}
-                    className="w-full py-1.5 px-3 rounded-lg bg-zinc-800/60 hover:bg-zinc-800 text-zinc-300 text-xs font-medium border border-zinc-700/60 transition-colors"
+                    className="w-full py-2 rounded-xl bg-[#171c27] hover:bg-[#222838] text-slate-300 text-xs font-mono transition-colors"
                   >
-                    Generate Test Payment Link
+                    Generate Payment Link
                   </button>
                 )}
               </div>

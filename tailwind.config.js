@@ -7,19 +7,25 @@ export default {
   darkMode: 'class',
   theme: {
     extend: {
-      fontFamily: {
-        sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
-        mono: ['"JetBrains Mono"', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'monospace'],
-      },
       colors: {
-        brand: {
-          50: '#eff6ff',
-          100: '#dbeafe',
-          500: '#3b82f6',
-          600: '#2563eb',
-          700: '#1d4ed8',
-          900: '#1e3a8a',
+        charcoal: {
+          950: '#0a0c10',
+          900: '#0e1117',
+          850: '#12161f',
+          800: '#171c27',
+          700: '#222838',
+          600: '#2f374c',
+        },
+        mint: {
+          400: '#34d399',
+          500: '#10b981',
+          600: '#059669',
         }
+      },
+      fontFamily: {
+        sans: ['"DM Sans"', 'Inter', '-apple-system', 'sans-serif'],
+        mono: ['"Space Mono"', 'monospace'],
+        syne: ['Syne', 'sans-serif'],
       }
     },
   },
